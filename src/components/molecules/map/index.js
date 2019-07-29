@@ -7,6 +7,9 @@ import './styles.scss';
 
 function Map(props) {
     const {stops} = props;
+    const inProgressRide = stops.filter(
+        (stop) => stop.status === 'inprogress'
+    )[0];
 
     return (
         <div className="map-container">
@@ -16,7 +19,10 @@ function Map(props) {
                     // with REACT_APP_GOOGLE_MAPS_API_TOKEN=${your_api_token}
                     key: process.env.REACT_APP_GOOGLE_MAPS_API_TOKEN,
                 }}
-                defaultCenter={{lat: stops[0].lat, lng: stops[0].lng}}
+                defaultCenter={{
+                    lat: inProgressRide.lat,
+                    lng: inProgressRide.lng,
+                }}
                 defaultZoom={13}>
                 {stops.map((stop, index) => (
                     <Avatar
