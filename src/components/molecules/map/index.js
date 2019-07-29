@@ -6,18 +6,19 @@ import Avatar from '../../atoms/avatar';
 import './styles.scss';
 
 function Map(props) {
+    const {stops} = props;
+
     return (
         <div className="map-container">
             <GoogleMapReact
                 bootstrapURLKeys={{
-                    // my Google Maps token, pls don't steal :D
-                    // ideally should be kept on a server unexposed
-                    // but no backend here
-                    key: 'AIzaSyCRu1mSIMqlClzLx2rAohYBYbAhYrmY4Ok',
+                    // make sure you have ".env" file in you root directory
+                    // with REACT_APP_GOOGLE_MAPS_API_TOKEN=${your_api_token}
+                    key: process.env.REACT_APP_GOOGLE_MAPS_API_TOKEN,
                 }}
-                defaultCenter={{lat: 40.1872, lng: 44.5152}}
+                defaultCenter={{lat: stops[0].lat, lng: stops[0].lng}}
                 defaultZoom={14}>
-                {props.stops.map((stop, index) => (
+                {stops.map((stop, index) => (
                     <Avatar
                         onMap
                         key={stop.id.toString()}
