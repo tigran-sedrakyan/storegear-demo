@@ -17,7 +17,7 @@ function Map(props) {
                     key: process.env.REACT_APP_GOOGLE_MAPS_API_TOKEN,
                 }}
                 defaultCenter={{lat: stops[0].lat, lng: stops[0].lng}}
-                defaultZoom={14}>
+                defaultZoom={13}>
                 {stops.map((stop, index) => (
                     <Avatar
                         onMap
